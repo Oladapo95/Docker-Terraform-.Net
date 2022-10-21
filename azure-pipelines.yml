@@ -28,3 +28,21 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
+  - job: Provision
+    displayName: 'Provision Infrastructure'
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+    - group: TerraformEnvVars
+    steps:
+    - script:
+        set -e
+        terraform init -input=false
+        terraform apply -auto-approve -input=false
+      name: 'RunTerraform'
+      displayName: 'Run Terraform'
+      env:
+        ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+        ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+        ARM_TENANT_ID: $(ARM_TENANT_ID)
+        ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
