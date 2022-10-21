@@ -14,7 +14,7 @@ resource "azurerm_container_group" "vm_container_group" {
 
   container {
     name   = "weatherapi"
-    image  = "devdapo/weatherapi"
+    image  = "devdapo/weatherapi:${var.imagebuild}"
     cpu    = "1"
     memory = "1"
 
