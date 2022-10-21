@@ -38,6 +38,7 @@ stages:
     steps:
     - script: |
         set -e
+        cd VM
         terraform init -input=false
         terraform apply -auto-approve -input=false
       name: 'RunTerraform'
