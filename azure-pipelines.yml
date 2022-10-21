@@ -30,6 +30,7 @@ stages:
           $(tag)
   - job: Provision
     displayName: 'Provision Infrastructure'
+    dependsOn: Build
     pool:
       vmImage: 'ubuntu-latest'
     variables:
